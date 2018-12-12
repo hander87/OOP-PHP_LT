@@ -97,7 +97,17 @@ trait SavingsPlus {
     }
 }
 
-class SavingsAccount extends BankAccount {
+// Interfaces, uses implements for usage
+interface AccountPlus {
+    public function addedBonus();
+}
+
+interface Savers {
+    public function orderNewPocketBook();
+    public function orderNewDepositBook();
+}
+
+class SavingsAccount extends BankAccount implements AccountPlus, Savers {
 
     // Add Trait
     use SavingsPlus;
@@ -118,7 +128,7 @@ class SavingsAccount extends BankAccount {
     }
 }
 
-class DebitAccount extends BankAccount {
+class DebitAccount extends BankAccount implements AccountPlus {
 
     // Add trait
     use SavingsPlus;
