@@ -2,7 +2,7 @@
 
 abstract class BankAccount {
 
-    // Variables
+    // Properties
     protected $balance = 500; // protected get black boxed, but accessible by other classes
     public $apr;
     public $sortCode;
@@ -39,6 +39,8 @@ abstract class BankAccount {
     }
 
     public function deposit( $amount ) {
+
+        // Variable(s)
         $transDate = new DateTime();
 
         if ( $this->locked === false ) {
