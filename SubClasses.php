@@ -104,12 +104,35 @@ class SavingsAccount extends BankAccount {
 }
 
 class Debit extends BankAccount {
+
+    // No public OR outside class calls allowed
     private $cardNumber;
     private $securityNumber;
     private $pinNumber;
 
     public function validate() {
         $valDate = new DateTime();
-        // $this-> // TODO
+        $this->cardNumber = rand(1000, 9999).'-'.rand(1000, 9999).'-'.rand(1000, 9999).'-'.rand(1000, 9999);
+        $this->securityNumber = rand(100, 999);
+        array_push( $this->audit, 
+            array( 
+                "Validated card",
+                $valDate->format('c'),
+                $this->securityNumber,
+                $this->pinNumber
+            ) 
+        );
+    }
+
+    public function changePin( $newPin ) {
+        $pinChange = new DateTime();
+        $this->pinNumber = $newPin;
+        array_push( $this->audit, 
+            array( 
+                "PIN code changed",
+                $pinChange->format('c'),
+                $this->pinNumber
+            ) 
+        );
     }
 }
