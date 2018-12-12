@@ -85,7 +85,22 @@ class IndividualSavingsAccount extends BankAccount {
 
 }
 
+trait SavingsPlus {
+    private $monthlyFee = 20;
+    public $package = "Holiday insurance";
+
+    // Methods
+    public function addedBonus() {
+        echo "Hello " . $this->firstName . " " . $this->lastName . 
+            ", for SEK" . $this->monthlyFee . 
+            " a month you get " . $this->package;
+    }
+}
+
 class SavingsAccount extends BankAccount {
+
+    // Add Trait
+    use SavingsPlus;
 
     // Variables
     public $pocketBook = array();
@@ -103,7 +118,10 @@ class SavingsAccount extends BankAccount {
     }
 }
 
-class Debit extends BankAccount {
+class DebitAccount extends BankAccount {
+
+    // Add trait
+    use SavingsPlus;
 
     // No public OR outside class calls allowed
     private $cardNumber;
