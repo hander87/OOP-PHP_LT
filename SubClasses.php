@@ -2,7 +2,7 @@
 
 require('BankAccount.php'); // require will shut down app if NOT FOUND - unlike include()
 
-class individualSavingsAccount extends BankAccount {
+class IndividualSavingsAccount extends BankAccount {
 
     // Properties
     public $timePeriod = 28;
@@ -83,4 +83,33 @@ class individualSavingsAccount extends BankAccount {
         );
     }
 
+}
+
+class SavingsAccount extends BankAccount {
+
+    // Variables
+    public $pocketBook = array();
+    public $depositBook = array();
+
+    // Methods
+    public function orderNewPocketBook() {
+        $orderTime = new DateTime();
+        array_push( $this->pocketBook, "Ordered new pocket book on: " . $orderTime->format('c') );
+    }
+
+    public function orderNewDepositBook() {
+        $orderTime = new DateTime();
+        array_push( $this->depositBook, "Ordered new deposit book on: " . $orderTime->format('c') );
+    }
+}
+
+class Debit extends BankAccount {
+    private $cardNumber;
+    private $securityNumber;
+    private $pinNumber;
+
+    public function validate() {
+        $valDate = new DateTime();
+        // $this-> // TODO
+    }
 }
