@@ -2,7 +2,7 @@
 
 require('BankAccount.php'); // require will shut down app if NOT FOUND - unlike include()
 
-class IndividualSavingsAccount extends BankAccount {
+class ISA extends BankAccount {
 
     // Properties
     public $timePeriod = 28;
