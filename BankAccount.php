@@ -3,7 +3,7 @@
 abstract class BankAccount {
 
     // Properties
-    protected $balance = 500; // protected get black boxed, but accessible by other classes
+    protected $balance = 0; // protected get black boxed, but accessible by other classes
     public $apr;
     public $sortCode;
     public $firstName;

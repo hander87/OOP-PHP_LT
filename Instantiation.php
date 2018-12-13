@@ -10,4 +10,13 @@ $account1->lastName = "Empson";
 $account1->additionalServices = "holiday package"; //"Holiday insurance"?
 
 // echo serialize($account1);
-var_dump($account1);
+
+$account1->deposit(1000);
+$account1->withdraw(200);
+$account1->withdraw(300);
+$account1->deposit(1000);
+
+// var_dump($account1);
+echo json_encode($account1);
+
+

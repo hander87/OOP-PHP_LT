@@ -12,13 +12,14 @@ class ISA extends BankAccount {
     public function withdraw( $amount ) {
         $transDate = new DateTime();
         $lastTransaction = null;
-        $length = count($this-audit);
+        $length = count($this->audit);
 
         for ( $i = $length; $i > 0; $i-- ) {
-            $element = $this->audit($i - 1);
+            
+            $element = $this->audit[$i - 1];
 
             // Calculates latest transaction
-            if ( $element[0] === "WITHDRAW ACCEPTED" ) {
+            if ( $element[0] === "Withdraw accepted!" ) {
                 $days = new DateTime( $element[3] );
 
                 // diff() gets difference between values
@@ -26,49 +27,47 @@ class ISA extends BankAccount {
                 $lastTransaction = $days->diff($transDate)->format("%a");
                 break;
             }
-
-            if ( 
-                $this->locked === false && $lastTransaction === null || 
-                $this->locked === false && $lastTransaction > $this->timePeriod  
-            ) {
-                $this->balance -= $amount;
+        }
+        if ( 
+            $lastTransaction === null && $this->locked === false || 
+            $this->locked === false && $lastTransaction > $this->timePeriod
+        ) {
+            $this->balance -= $amount;
+            array_push( $this->audit, 
+                array( 
+                    "Withdraw accepted!",
+                    $amount,
+                    $this->balance,
+                    $transDate->format('c')
+                ) 
+            );
+        } else {
+            // Account not locked, but timeperiod was lapsed
+            if ( $this->locked === false ) {
+                $this->balance -= amount;
                 array_push( $this->audit, 
                     array( 
-                        "Withdraw accepted!",
+                        "Withdraw accepted with PENALTY!",
                         $amount,
                         $this->balance,
-                        $transDate->format( 'c' )
+                        $transDate->format('c')
                     ) 
                 );
+                $this->penalty();
             } else {
-                // Account not locked, but timeperiod was lapsed
-                if ( $this->locked === false ) {
-                    $this->balance -= amount;
-                    array_push( $this->audit, 
-                        array( 
-                            "Withdraw accepted with PENALTY!",
-                            $amount,
-                            $this->balance,
-                            $transDate->format( 'c' )
-                        ) 
-                    );
-                    $this-penalty();
-                } else {
-                    array_push( $this->audit, 
-                        array( 
-                            "Withdraw denied!",
-                            $amount,
-                            $this->balance,
-                            $transDate->format( 'c' )
-                        ) 
-                    );
-                }
+                array_push( $this->audit, 
+                    array( 
+                        "Withdraw denied!",
+                        $amount,
+                        $this->balance,
+                        $transDate->format('c')
+                    ) 
+                );
             }
         }
-        
     }
 
-    private function penalty ( $amount ) { // private is secured to CURRENT CLASS
+    private function penalty ( ) { // private is secured to CURRENT CLASS
         $transDate = new DateTime();
         $penaltyAmount = 10;
         $this->balance -= $penaltyAmount;
