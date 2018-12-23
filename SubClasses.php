@@ -90,9 +90,9 @@ trait SavingsPlus {
 
     // Methods
     public function addedBonus() {
-        echo "Hello " . $this->firstName . " " . $this->lastName . 
-            ", for SEK" . $this->monthlyFee . 
-            " a month you get " . $this->package;
+        // echo "Hello " . $this->firstName . " " . $this->lastName . 
+        //     ", for SEK" . $this->monthlyFee . 
+        //     " a month you get " . $this->package;
     }
 }
 
