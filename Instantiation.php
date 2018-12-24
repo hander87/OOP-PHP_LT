@@ -20,7 +20,7 @@ $account1->withdraw(300);
 
 // SAVINGS ACCOUNT
 
-$account2 = new SavingsAccount; // instance of ISA class
+$account2 = new SavingsAccount; // instance of SAVINGSACCOUNT class
 
 $account2->apr = 12.0;
 $account2->sortCode = "20-50-20";
@@ -39,7 +39,7 @@ $account2->orderNewPocketBook();
 
 // DEBIT ACCOUNT
 
-$account3 = new DebitAccount; // instance of ISA class
+$account3 = new DebitAccount; // instance of DEBIT class
 
 $account3->apr = 1.0;
 $account3->sortCode = "20-80-20";
@@ -56,10 +56,26 @@ $account3->withdraw(300);
 $account3->changePin( 1234 );
 $account3->validate();
 
-
 // var_dump($account1);
 // echo json_encode($account1);
 // echo json_encode($account2);
-echo json_encode($account3);
+// echo json_encode($account3);
 
-// TODO: 5/25
+// Array
+
+$accountList = array( $account1, $account2, $account3  );
+
+foreach( $accountList as $account ) {
+    $print = $account->firstName;
+
+    if ($account instanceof AccountPlus) {
+        $print .= " has addedBonus()";
+    }
+    if ($account instanceof Savers) {
+        $print .= "and has orderNewPocketBook() + orderNewDepositBook()";
+    }
+
+    echo $print. '<br>';
+}
+
+// TODO 26/5
