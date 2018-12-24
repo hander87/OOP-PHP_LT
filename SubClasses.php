@@ -90,9 +90,9 @@ trait SavingsPlus {
 
     // Methods
     public function addedBonus() {
-        // echo "Hello " . $this->firstName . " " . $this->lastName . 
-        //     ", for SEK" . $this->monthlyFee . 
-        //     " a month you get " . $this->package;
+        echo "Hello " . $this->firstName . " " . $this->lastName . 
+            ", for SEK" . $this->monthlyFee . 
+            " a month you get " . $this->package;
     }
 }
 
@@ -146,7 +146,8 @@ class DebitAccount extends BankAccount implements AccountPlus {
                 "Validated card",
                 $valDate->format('c'),
                 $this->securityNumber,
-                $this->pinNumber
+                $this->pinNumber,
+                $this->cardNumber,
             ) 
         );
     }

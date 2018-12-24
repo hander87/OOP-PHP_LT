@@ -33,15 +33,33 @@ $account2->lock();
 $account2->withdraw(100);
 $account2->unlock();
 $account2->withdraw(300);
-$account2->addedBonus();
+// $account2->addedBonus();
 $account2->orderNewDepositBook();
 $account2->orderNewPocketBook();
 
-// TODO: 5/24 - 15:50 - DEBIT ACCOUNT
+// DEBIT ACCOUNT
+
+$account3 = new DebitAccount; // instance of ISA class
+
+$account3->apr = 1.0;
+$account3->sortCode = "20-80-20";
+$account3->firstName = "James";
+$account3->lastName = "Bond";
+$account3->package = "007 insurance";
+
+$account3->deposit(1500);
+$account3->lock();
+$account3->withdraw(1200);
+$account3->unlock();
+$account3->withdraw(300);
+// $account3->addedBonus();
+$account3->changePin( 1234 );
+$account3->validate();
 
 
 // var_dump($account1);
 // echo json_encode($account1);
-echo json_encode($account2);
+// echo json_encode($account2);
+echo json_encode($account3);
 
-
+// TODO: 5/25
