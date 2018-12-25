@@ -8,6 +8,11 @@ class ISA extends BankAccount {
     public $timePeriod = 28;
     public $additionalServices;
 
+    // Constructor
+    public function __construct () {
+
+    }
+
     // Methods
     public function withdraw( $amount ) {
         $transDate = new DateTime();
