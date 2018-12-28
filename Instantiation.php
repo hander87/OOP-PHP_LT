@@ -3,13 +3,13 @@ require('SubClasses.php');
 
 // ISA ACCOUNT
 
-$account1 = new ISA; // instance of ISA class
+$account1 = new ISA( 35, 'Cool package' ); // instance of ISA class
 
 $account1->apr = 5.0;
 $account1->sortCode = "20-20-20";
 $account1->firstName = "Hannes";
 $account1->lastName = "Empson";
-$account1->additionalServices = "holiday package"; //"Holiday insurance"?
+// $account1->additionalServices = "holiday package"; //"Holiday insurance"?
 
 $account1->deposit(1000);
 $account1->lock();
@@ -57,7 +57,7 @@ $account3->changePin( 1234 );
 $account3->validate();
 
 // var_dump($account1);
-// echo json_encode($account1);
+echo json_encode($account1);
 // echo json_encode($account2);
 // echo json_encode($account3);
 
@@ -75,7 +75,7 @@ foreach( $accountList as $account ) {
         $print .= "and has orderNewPocketBook() + orderNewDepositBook()";
     }
 
-    echo $print. '<br>';
+    // echo $print. '<br>';
 }
 
 // TODO 26/5

@@ -9,8 +9,11 @@ class ISA extends BankAccount {
     public $additionalServices;
 
     // Constructor
-    public function __construct () {
-
+    public function __construct ($time, $service) {
+        
+        $this->timePeriod = $time;
+        $this->additionalServices = $service;
+        // echo 'constructor fired!';
     }
 
     // Methods
