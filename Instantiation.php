@@ -3,12 +3,13 @@ require('SubClasses.php');
 
 // ISA ACCOUNT
 
-$account1 = new ISA( 35, 'Cool package' ); // instance of ISA class
+// instance of ISA class
+// Instanciation with call to SuperClass constructor
+$account1 = new ISA( 35, 'Coool package', 5.0, '20-20-20', 'Hannes', 'Empson', 1337, true );
 
-$account1->apr = 5.0;
-$account1->sortCode = "20-20-20";
-$account1->firstName = "Hannes";
-$account1->lastName = "Empson";
+// PHP allows creation of unassigned properties in instanciation.
+$account1->doesNotExist = 'Requives default value though';
+
 // $account1->additionalServices = "holiday package"; //"Holiday insurance"?
 
 $account1->deposit(1000);
@@ -19,14 +20,7 @@ array_push( $account1->audit, array( "(Manual) Withdraw accepted!", 200, 800, "2
 $account1->withdraw(300);
 
 // SAVINGS ACCOUNT
-
-$account2 = new SavingsAccount; // instance of SAVINGSACCOUNT class
-
-$account2->apr = 12.0;
-$account2->sortCode = "20-50-20";
-$account2->firstName = "Emma";
-$account2->lastName = "Ansson";
-$account2->package = "Cartoon insurance";
+$account2 = new SavingsAccount( 50, 'Cartoon insurance', 12.0, "20-50-20", "Emma", "Ansson" );
 
 $account2->deposit(500);
 $account2->lock();
@@ -39,13 +33,7 @@ $account2->orderNewPocketBook();
 
 // DEBIT ACCOUNT
 
-$account3 = new DebitAccount; // instance of DEBIT class
-
-$account3->apr = 1.0;
-$account3->sortCode = "20-80-20";
-$account3->firstName = "James";
-$account3->lastName = "Bond";
-$account3->package = "007 insurance";
+$account3 = new DebitAccount( 30, '007 insurance', 1234, 1.0, "20-80-20", "James", "Bond" ); // instance of DEBIT class
 
 $account3->deposit(1500);
 $account3->lock();
@@ -53,15 +41,11 @@ $account3->withdraw(1200);
 $account3->unlock();
 $account3->withdraw(300);
 // $account3->addedBonus();
-$account3->changePin( 1234 );
-$account3->validate();
 
-// var_dump($account1);
-// echo json_encode($account1);
-// echo json_encode($account2);
-// echo json_encode($account3);
 
-var_dump($account1);
+// Echoing
+
+var_dump($account3); // var_dump/print_r allows to output private properties
 
 // Array
 

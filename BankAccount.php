@@ -1,15 +1,31 @@
 <?php
 
+// ABSTRACT class cannot be invoked DIRECTLY. "new BankAccount" = Invalid.
+// Invoked only through sub-classes
 abstract class BankAccount {
 
     // Properties
-    protected $balance = 0; // protected get black boxed, but accessible by other classes
+    protected $balance; // protected get black boxed/censored, but accessible by other classes
     public $apr;
     public $sortCode;
     public $firstName;
     public $lastName;
     public $audit = array();
-    protected $locked = false;
+    protected $locked;
+
+    // Constructor
+    // Optional args are at the END. They are optional if they have default values. Writes like:
+    // $accountX = new ISA(5.0, "20-20-20", "Tom", "Phips")
+    public function __construct( $apr, $sc, $fn, $ln, $bal = 0, $lock = false ) {
+
+        $this->balance = $bal;
+        $this->apr = $apr;
+        $this->sortCode = $sc;
+        $this->firstName = $fn;
+        $this->lastName = $ln;
+        $this->locked = $lock;
+
+    }
 
     // Methods
     public function withdraw( $amount ) {

@@ -5,15 +5,20 @@ require('BankAccount.php'); // require will shut down app if NOT FOUND - unlike 
 class ISA extends BankAccount {
 
     // Properties
-    private $timePeriod = 28;
+    private $timePeriod;
     public $additionalServices;
 
     // Constructor
-    public function __construct ($time, $service) {
+    // Invokes SuperClass constructor
+    public function __construct ($time, $service, $apr, $sc, $fn, $ln, $bal = 0, $lock = false ) {
         
         $this->timePeriod = $time;
         $this->additionalServices = $service;
         // echo 'constructor fired!';
+
+        // Passes values to SuperClass constructor
+        parent::__construct( $apr, $sc, $fn, $ln, $bal, $lock );
+
     }
 
     // Methods
@@ -123,6 +128,14 @@ class SavingsAccount extends BankAccount implements AccountPlus, Savers {
     public $pocketBook = array();
     public $depositBook = array();
 
+    // Constructor
+    public function __construct( $fee, $package, $apr, $sc, $fn, $ln, $bal = 0, $lock = false ) {
+        $this->monthlyFee = $fee;
+        $this->package = $package;
+
+        parent::__construct( $apr, $sc, $fn, $ln, $bal, $lock );
+    }
+
     // Methods
     public function orderNewPocketBook() {
         $orderTime = new DateTime();
@@ -140,12 +153,24 @@ class DebitAccount extends BankAccount implements AccountPlus {
     // Add trait
     use SavingsPlus;
 
+    // PRIVATE classes can only be called within the class. 
     // No public OR outside class calls allowed
     private $cardNumber;
     private $securityNumber;
     private $pinNumber;
 
-    public function validate() {
+    // Constructor
+    public function __construct( $fee, $package, $pin, $apr, $sc, $fn, $ln, $bal = 0, $lock = false ) {
+        $this->monthlyFee = $fee;
+        $this->package = $package;
+        $this->pinNumber = $pin;
+        $this->validate();
+
+        parent::__construct( $apr, $sc, $fn, $ln, $bal, $lock );
+    }
+
+    // Methods
+    private function validate() {
         $valDate = new DateTime();
         $this->cardNumber = rand(1000, 9999).'-'.rand(1000, 9999).'-'.rand(1000, 9999).'-'.rand(1000, 9999);
         $this->securityNumber = rand(100, 999);
