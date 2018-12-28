@@ -1,8 +1,13 @@
 <?php
-
+// TODO: 28/5 
 // ABSTRACT class cannot be invoked DIRECTLY. "new BankAccount" = Invalid.
 // Invoked only through sub-classes
 abstract class BankAccount {
+
+    // Class Level Members:
+    const INFO = "<p>Constant in BankAccount class</p>";
+    static public $stat = "<p>Static property string</p>";
+    
 
     // Properties
     protected $balance; // protected get black boxed/censored, but accessible by other classes
@@ -28,6 +33,10 @@ abstract class BankAccount {
     }
 
     // Methods
+    static public function stat() {
+        echo "<p>This is the method static string</p>";
+    }
+
     public function withdraw( $amount ) {
         $transDate = new DateTime();
 
@@ -103,5 +112,10 @@ abstract class BankAccount {
             ) 
         );
     }
-
 }
+
+// Displaying class levels info 
+// (Note; NOT instanciation, because it's not allowed in abstract classes)
+echo BankAccount::INFO;
+echo BankAccount::$stat;
+echo BankAccount::stat();
