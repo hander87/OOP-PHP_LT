@@ -5,7 +5,7 @@ require('BankAccount.php'); // require will shut down app if NOT FOUND - unlike 
 class ISA extends BankAccount {
 
     // Properties
-    public $timePeriod = 28;
+    private $timePeriod = 28;
     public $additionalServices;
 
     // Constructor

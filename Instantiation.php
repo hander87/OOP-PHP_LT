@@ -57,9 +57,11 @@ $account3->changePin( 1234 );
 $account3->validate();
 
 // var_dump($account1);
-echo json_encode($account1);
+// echo json_encode($account1);
 // echo json_encode($account2);
 // echo json_encode($account3);
+
+var_dump($account1);
 
 // Array
 
