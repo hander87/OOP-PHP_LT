@@ -47,6 +47,13 @@ $account3->withdraw(300);
 
 // var_dump($account3); // var_dump/print_r allows to output private properties
 
+// Accessing const/static values in Classes from instanciation with ::
+echo $account1::INFO;
+echo '<hr>';
+echo $account1::$stat;
+echo '<hr>';
+echo $account1::stat();
+
 // Array
 
 $accountList = array( $account1, $account2, $account3  );
