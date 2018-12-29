@@ -5,8 +5,8 @@
 abstract class BankAccount {
 
     // Class Level Members:
-    const INFO = "<p>Constant in BankAccount class</p>";
-    static public $stat = "<p>Static property string</p>";
+    const INFO = "Constant in BankAccount class ";
+    static public $stat = "Static property string ";
     
 
     // Properties
@@ -33,10 +33,16 @@ abstract class BankAccount {
     }
 
     // Methods
+
+    // Class level method
+    // Cannot use $this->, which is for instance methods
+    // Double colon is used for access to const/static prop/function
+    // Self looks at the current class
     static public function stat() {
-        echo "<p>This is the method static string</p>";
+        echo "<p>This is the method static string " . self::INFO . self::$stat ."</p>";
     }
 
+    // Instance level method
     public function withdraw( $amount ) {
         $transDate = new DateTime();
 
@@ -115,7 +121,8 @@ abstract class BankAccount {
 }
 
 // Displaying class levels info 
+// Inside class = self:: | Outside class = BankAccount::
 // (Note; NOT instanciation, because it's not allowed in abstract classes)
-echo BankAccount::INFO;
-echo BankAccount::$stat;
-echo BankAccount::stat();
+// echo BankAccount::INFO;
+// echo BankAccount::$stat;
+// echo BankAccount::stat();
