@@ -78,6 +78,14 @@ class ISA extends BankAccount {
                 );
             }
         }
+
+        // Calling consts/static vars inside SubClass
+        // Parent:: is used for looking at consts/static vars inside SuperClass
+        echo parent::INFO;
+        echo '<hr>';
+        echo parent::$stat;
+        echo '<hr>';
+        echo parent::stat();
     }
 
     private function penalty ( ) { // private is secured to CURRENT CLASS

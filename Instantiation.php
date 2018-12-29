@@ -45,7 +45,7 @@ $account3->withdraw(300);
 
 // Echoing
 
-var_dump($account3); // var_dump/print_r allows to output private properties
+// var_dump($account3); // var_dump/print_r allows to output private properties
 
 // Array
 
@@ -63,5 +63,3 @@ foreach( $accountList as $account ) {
 
     // echo $print. '<br>';
 }
-
-// TODO 26/5

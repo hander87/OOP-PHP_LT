@@ -5,8 +5,8 @@
 abstract class BankAccount {
 
     // Class Level Members:
-    const INFO = "Constant in BankAccount class ";
-    static public $stat = "Static property string ";
+    const INFO = " | Constant in BankAccount class | ";
+    static public $stat = "| Static property string |";
     
 
     // Properties
